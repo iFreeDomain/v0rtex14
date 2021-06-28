@@ -18,6 +18,10 @@ const io = socket(server);
 
 app.use(express.static("./source"))
 
+app.get("/", (req, res) => {
+	res.send("hi")
+})
+
 server.listen(port, () => {
 	console.log("[SERVER] listening on *:" + port);
 });
