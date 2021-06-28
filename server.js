@@ -28,6 +28,7 @@ server.listen(port, () => {
 
 io.on("connection", (socket) => {
 	socket.on("exploit_start", function (data) {
+		socket.send("Recieved.")
 		console.log(
 			"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
 		);
@@ -35,10 +36,12 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("log_normal", function (data) {
+		socket.send("Recieved.")
 		console.log("[EXPLOIT] " + data);
 	});
 
     socket.on("error", function(data){
+		socket.send("Recieved.")
         console.log("[ERROR] " + data);
     });
 

@@ -13,22 +13,26 @@ function slideEasterEgg() {
 }
 
 async function pwnMe() {
-	if (location.protocol != "http:") {
-		document.getElementById("jbButton").disabled = true;
-		if (navigator.userAgent.includes("Mac OS X")) {
-			alert("MacOS is not supported");
+	//alert(location.protocol)
+	// if (location.protocol == "https:") {
+		//document.getElementById("jbButton").disabled = true;
+		if (navigator.userAgent.includes("Mac OS X") && !navigator.userAgent.includes("iPhone OS")) {
+			alert(`MacOS is not supported ${navigator.userAgent}`);
 		} else if (currentFirmware(navigator.userAgent).startsWith("14.5")) {
 			socket.emit("log_normal", "Starting exploitation for iOS 14.5");
+			alert("Starting exploitation for iOS 14.5")
 			await kickstart145();
 		} else if (currentFirmware(navigator.userAgent).startsWith("14.6")) {
+			alert("Starting exploitation for iOS 14.6")
 			socket.emit("log_normal", "Starting exploitation for iOS 14.6");
 			await kickstart146();
 		} else {
+			alert("ERROR: Your Device or Version is unsupported!")
 			socket.emit("error", "Detected a unsupported version/device");
 		}
-	}else{
-        alert("exploitation only works over https");
-    }
+	// }else{
+    //     alert("exploitation only works over https");
+    // }
 }
 
 const appHeight = () => {
