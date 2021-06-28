@@ -1,5 +1,5 @@
 var port = process.env.PORT || 666;
-var debug = false;
+var debug = true;
 
 var express = require("express");
 const path = require("path");
@@ -7,16 +7,16 @@ const app = express();
 const https = require("https");
 const fs = require('fs');
 
-const options = {
-  key: fs.readFileSync('ssl/key.pem'),
-  cert: fs.readFileSync('ssl/cert.pem')
-};
+// const options = {
+//   key: fs.readFileSync('ssl/jailbreak.tenzin.wtf+3-key.pem'),
+//   cert: fs.readFileSync('ssl/jailbreak.tenzin.wtf+3.pem')
+// };
 
-const server = https.createServer(options, app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+const server = https.createServer(app);
+const socket = require("socket.io");
+const io = socket(server);
 
-app.use(express.static("./source"));
+app.use(express.static("./source"))
 
 server.listen(port, () => {
 	console.log("[SERVER] listening on *:" + port);

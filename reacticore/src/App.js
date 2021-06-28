@@ -1,19 +1,15 @@
-var headerTapCounter = 0;
+import "./App.css";
+import kickstart145 from "./exploits/14.5";
+import kickstart146 from "./exploits/14.6";
+import socket from "socket.io";
 
-currentFirmware = function (userAgent) {
+
+var currentFirmware = function (userAgent) {
 	return userAgent.match(/\OS (.*?)\ like/)[1].replaceAll("_", ".");
 };
 
-function slideEasterEgg() {
-	headerTapCounter++;
-	if (headerTapCounter == 5) {
-		document.getElementById("jbButton").style.display = "none";
-		document.getElementById("page-wrap").style.display = "block";
-	}
-}
-
 async function pwnMe() {
-	if (location.protocol != "http:") {
+	if (window.location.protocol != "https:") {
 		document.getElementById("jbButton").disabled = true;
 		if (navigator.userAgent.includes("Mac OS X")) {
 			alert("MacOS is not supported");
@@ -38,3 +34,23 @@ const appHeight = () => {
 
 window.addEventListener("resize", appHeight);
 appHeight();
+
+function App() {
+  return (
+    <div>
+      <button id="jbButton" className="exploitButton" onClick={pwnMe()}>
+        Jailbreak
+      </button>
+      <div id="page-wrap" style={{display: "none"}}>
+        <div id="well">
+          <h2>
+            <strong id="slider"></strong>
+            <span>slide to jailbreak</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;

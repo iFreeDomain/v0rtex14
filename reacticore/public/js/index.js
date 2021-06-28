@@ -13,7 +13,7 @@ function slideEasterEgg() {
 }
 
 async function pwnMe() {
-	if (location.protocol != "http:") {
+	if (location.protocol != "https:") {
 		document.getElementById("jbButton").disabled = true;
 		if (navigator.userAgent.includes("Mac OS X")) {
 			alert("MacOS is not supported");
