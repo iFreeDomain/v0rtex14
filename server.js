@@ -16,6 +16,8 @@ const server = https.createServer(app);
 const socket = require("socket.io");
 const io = socket(server);
 
+io.set('transports', ['websocket']);
+
 app.use(express.static("./source"))
 
 app.get("/", (req, res) => {
