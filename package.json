@@ -12,6 +12,7 @@
     "git:all": "echo git[all]: Running git:all on local machine && npm run git:bundle",
     "vercel:dev": "echo vercel[dev]: Running `deploy` script on providers: Vercel && vercel",
     "vercel:prod": "echo vercel[prod]: Running `deploy` script on providers: Vercel && vercel --prod",
+    "heroku": "echo heroku[main]: Running `deploy` script on providers: Heroku && npm run git:bundle",
     "deploy:dev": "echo deploy[dev]: Running `deploy` script on providers: Heroku, Vercel && npm run git:all && npm run vercel:dev",
     "deploy:prod": "echo deploy[prod]: Running `deploy` script on providers: Heroku, Vercel && npm run git:all && npm run vercel:prod"
   },
@@ -32,6 +33,7 @@
     "faye-websocket": "^0.11.4",
     "path": "^0.12.7",
     "socket.io": "1.0",
-    "socket.io-client": "^4.1.2"
+    "socket.io-client": "^4.1.2",
+    "ws": "^7.5.1"
   }
 }
