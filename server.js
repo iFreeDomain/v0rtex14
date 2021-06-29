@@ -1,13 +1,9 @@
 var port = process.env.PORT || 666;
-var debug = true;
-var faye = require("faye");
-var { WebSocket } = require("faye-websocket");
+var WebSocketServer = require("ws").Server
 var express = require("express");
-const path = require("path");
 const app = express();
 var ws = require("express-ws")(app);
 const https = require("https");
-const fs = require('fs');
 
 // const options = {
 //   key: fs.readFileSync('ssl/jailbreak.tenzin.wtf+3-key.pem'),
