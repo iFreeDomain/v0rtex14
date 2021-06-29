@@ -26,34 +26,36 @@ server.listen(port, () => {
 
 
 
-var ws = new WebSocketServer({ 
+var wss = new WebSocketServer({ 
 	server: server
 });
 
-ws.on("message", (msg) => {
-	console.log("[MESSAGE] ", msg)
-	switch(msg) {
-		case "exploit_start": {
-			socket.send("Recieved.")
-			console.log(
-				"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
-			);
-			console.log("[EXPLOIT] Supporting iOS " + data.exploitVersion);
-		} break;
-
-		case "log_normal": {
-			socket.send("Recieved.")
-			console.log("[EXPLOIT] " + data);
-		} break;
-
-		case "error": {
-			socket.send("Recieved.")
-			console.log("[ERROR] " + data);  
-		} break;
-	}
+wss.on("connection", function(ws) {
+	ws.on("message", (msg) => {
+		console.log("[MESSAGE] ", msg)
+		switch(msg) {
+			case "exploit_start": {
+				socket.send("Recieved.")
+				console.log(
+					"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
+				);
+				console.log("[EXPLOIT] Supporting iOS " + data.exploitVersion);
+			} break;
+	
+			case "log_normal": {
+				socket.send("Recieved.")
+				console.log("[EXPLOIT] " + data);
+			} break;
+	
+			case "error": {
+				socket.send("Recieved.")
+				console.log("[ERROR] " + data);  
+			} break;
+		}
+	})
+	
+	ws.on('close', function(event) {
+		console.log('close', event.code, event.reason);
+		ws = null;
+	});
 })
-
-ws.on('close', function(event) {
-	console.log('close', event.code, event.reason);
-	ws = null;
-});
