@@ -30,11 +30,8 @@ server.listen(port, () => {
 app.ws("/", (socket, req) => {
 
 	console.log("[CLIENT] New client connection... (" + socket.id + ")");
-
-
-
-
 	socket.on("message", (msg) => {
+		console.log("[MESSAGE] ", msg)
 		switch(msg) {
 			case "exploit_start": {
 				socket.send("Recieved.")
