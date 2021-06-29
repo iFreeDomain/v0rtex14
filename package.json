@@ -9,10 +9,11 @@
     "git:add": "git add .",
     "git:commit": "git commit -m \"🤖🧶 | Automatic deploy by yarn\"",
     "git:push": "git push heroku master",
-    "git:all": "echo \"git[all]: Running git:all on local machine\" && npm run git:bundle",
-    "vercel:dev": "echo \"vercel[dev]: Running `deploy` script on providers: Vercel\" && vercel",
-    "deploy:dev": "echo \"deploy[dev]: Running `deploy` script on providers: Heroku, Vercel\" && npm run git:all && npm run vercel:dev",
-    "deploy:prod": "echo \"deploy[prod]: Running `deploy` script on providers: Heroku, Vercel\" && npm run git:all && npm run vercel:prod"
+    "git:all": "echo git[all]: Running git:all on local machine && npm run git:bundle",
+    "vercel:dev": "echo vercel[dev]: Running `deploy` script on providers: Vercel && vercel",
+    "vercel:prod": "echo vercel[prod]: Running `deploy` script on providers: Vercel && vercel --prod",
+    "deploy:dev": "echo deploy[dev]: Running `deploy` script on providers: Heroku, Vercel && npm run git:all && npm run vercel:dev",
+    "deploy:prod": "echo deploy[prod]: Running `deploy` script on providers: Heroku, Vercel && npm run git:all && npm run vercel:prod"
   },
   "repository": {
     "type": "git",

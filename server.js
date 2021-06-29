@@ -31,7 +31,7 @@ app.ws("/", (socket, req) => {
 
 	console.log("[CLIENT] New client connection... (" + socket.id + ")");
 
-	ws.on("exploit_start", function (data) {
+	socket.on("exploit_start", function (data) {
 		socket.send("Recieved.")
 		console.log(
 			"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
