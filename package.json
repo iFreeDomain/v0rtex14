@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git:bundle": "npm run git:add && npm run git:commit && npm run git:push",
+    "git:add": "git add .",
+    "git:commit": "git commit -m \"🤖🧶 | Automatic deploy by yarn\"",
+    "git:push": "git push heroku master",
+    "git:all": "echo \"git[all]: Running git:all on local machine\" && npm run git:bundle",
+    "deploy:dev": "echo \"deploy[dev]: Running `deploy` script on providers: Heroku, Vercel\" && npm run git:all && npm run vercel:dev",
+    "deploy:prod": "echo \"deploy[prod]: Running `deploy` script on providers: Heroku, Vercel\" && npm run git:all && npm run vercel:prod"
   },
   "repository": {
     "type": "git",
@@ -18,6 +25,7 @@
   "homepage": "https://github.com/RPwnage/pwn-my#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-ws": "^5.0.2",
     "path": "^0.12.7",
     "socket.io": "1.0",
     "socket.io-client": "^4.1.2"
