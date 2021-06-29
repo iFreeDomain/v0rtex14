@@ -12,7 +12,7 @@
     "git:push": "git push heroku master",
     "git:add:origin": "git add .",
     "git:commit:origin": "git commit -m \"🤖🧶 | Automatic deploy by yarn\"",
-    "git:push:origin": "git push heroku master",
+    "git:push:origin": "git push origin master",
     "git:all": "echo git[all]: Running git:all on local machine && npm run git:bundle",
     "vercel:dev": "echo vercel[dev]: Running `deploy` script on providers: Vercel && vercel",
     "vercel:prod": "echo vercel[prod]: Running `deploy` script on providers: Vercel && vercel --prod",
