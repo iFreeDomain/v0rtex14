@@ -29,7 +29,7 @@ We're planning on selectable package managers including Sileo, Cydia, Installer,
 We're planning on including dynamic jailbreak detection, to detect, disable/enable previous jailbreak installations on the device.
 
 ### Who is working on Manticore?
-Our team consists of RPwnage, <@250670950650085386>, and <@555989387981225986> (Development) as well as <@352605558307815434> (UI Design).
+Our team consists of RPwnage, cpwn. I (tenzin) made my own public manticore but i do not maintain or affiliate with the manticore team :(
 
 # 😀 Credits
 
@@ -37,7 +37,9 @@ Original README by DramaBinny, refreshed by tenzin (me :))
 
 __Developers__
 
-RPwnage and M
+RPwnage and cpwn99
+
+SirTenzin (Unofficial)
 
 __UI Developers__
 
@@ -58,9 +60,7 @@ That's a dead kid
 - [ ] Find and implement a Kernel Exploit
 - [ ] Create a better UI
 - [ ] Implement APT/PM selector (Cydia, Sileo, Zebra etc..)
-- [ ] Complete Reactification
-- [ ] Fix React not liking our native JS implementations, or Find 2 hosts.
-- [ ] Find a host for Front and Back ends with SSL in-house
+- [x] Find a host for Front and Back ends with SSL in-house
 
 # 👋 Bye
 Youve finished reading the README, nice things are coming Soon:tm:

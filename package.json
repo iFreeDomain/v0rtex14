@@ -6,9 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "git:bundle": "npm run git:add && npm run git:commit && npm run git:push",
+    "git:bundle:origin": "npm run git:add:origin && npm run git:commit:origin && npm run git:push:origin",
     "git:add": "git add .",
     "git:commit": "git commit -m \"🤖🧶 | Automatic deploy by yarn\"",
     "git:push": "git push heroku master",
+    "git:add:origin": "git add .",
+    "git:commit:origin": "git commit -m \"🤖🧶 | Automatic deploy by yarn\"",
+    "git:push:origin": "git push heroku master",
     "git:all": "echo git[all]: Running git:all on local machine && npm run git:bundle",
     "vercel:dev": "echo vercel[dev]: Running `deploy` script on providers: Vercel && vercel",
     "vercel:prod": "echo vercel[prod]: Running `deploy` script on providers: Vercel && vercel --prod",
