@@ -31,23 +31,31 @@ app.ws("/", (socket, req) => {
 
 	console.log("[CLIENT] New client connection... (" + socket.id + ")");
 
-	socket.on("exploit_start", function (data) {
-		socket.send("Recieved.")
-		console.log(
-			"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
-		);
-		console.log("[EXPLOIT] Supporting iOS " + data.exploitVersion);
-	});
 
-	socket.on("log_normal", function (data) {
-		socket.send("Recieved.")
-		console.log("[EXPLOIT] " + data);
-	});
 
-    socket.on("error", function(data){
-		socket.send("Recieved.")
-        console.log("[ERROR] " + data);
-    });
+
+	socket.on("message", (msg) => {
+		switch(msg) {
+			case "exploit_start": {
+				socket.send("Recieved.")
+				console.log(
+					"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
+				);
+				console.log("[EXPLOIT] Supporting iOS " + data.exploitVersion);
+			} break;
+
+			case "log_normal": {
+				socket.send("Recieved.")
+				console.log("[EXPLOIT] " + data);
+			} break;
+
+			case "error": {
+				socket.send("Recieved.")
+				console.log("[ERROR] " + data);  
+			} break;
+		}
+	})
+
 })
 
 // io.on("connection", (socket) => {
