@@ -1,6 +1,7 @@
 var port = process.env.PORT || 666;
 var debug = true;
-
+var faye = require("faye");
+var { WebSocket } = require("faye-websocket");
 var express = require("express");
 const path = require("path");
 const app = express();
@@ -13,7 +14,10 @@ const fs = require('fs');
 //   cert: fs.readFileSync('ssl/jailbreak.tenzin.wtf+3.pem')
 // };
 
-const server = https.createServer(app);
+const server = https.createServer(app),
+	  bayeux = new faye.NodeAdapter({mount: '/socket'});
+
+bayeux.attach(server);;
 const socket = require("socket.io");
 const io = socket(server);
 
@@ -27,10 +31,11 @@ server.listen(port, () => {
 	console.log("[SERVER] listening on *:" + port);
 });
 
-app.ws("/", (socket, req) => {
-
-	console.log("[CLIENT] New client connection... (" + socket.id + ")");
-	socket.on("message", (msg) => {
+server.on('upgrade', function(request, socket, body) {
+	if (WebSocket.isWebSocket(request)) {
+	  var ws = new WebSocket(request, socket, body);
+  
+	  ws.on("message", (msg) => {
 		console.log("[MESSAGE] ", msg)
 		switch(msg) {
 			case "exploit_start": {
@@ -53,27 +58,9 @@ app.ws("/", (socket, req) => {
 		}
 	})
 
-})
-
-// io.on("connection", (socket) => {
-// 	socket.on("exploit_start", function (data) {
-// 		socket.send("Recieved.")
-// 		console.log(
-// 			"[EXPLOIT] Exploit has been started. (" + data.userAgent + ")"
-// 		);
-// 		console.log("[EXPLOIT] Supporting iOS " + data.exploitVersion);
-// 	});
-
-// 	socket.on("log_normal", function (data) {
-// 		socket.send("Recieved.")
-// 		console.log("[EXPLOIT] " + data);
-// 	});
-
-//     socket.on("error", function(data){
-// 		socket.send("Recieved.")
-//         console.log("[ERROR] " + data);
-//     });
-
-// 	if (debug === true)
-// 		console.log("[CLIENT] New client connection... (" + socket.id + ")");
-// });
+	ws.on('close', function(event) {
+	console.log('close', event.code, event.reason);
+	ws = null;
+	});
+	}
+  });
